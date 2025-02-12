@@ -1,4 +1,41 @@
 /* Start Glaobal Rules */
+:root {
+    /* 🎨 Primary Colors (Main Identity) */
+        --primary-bg: #F5E8D9;
+        /* Warm Beige - Cozy background */
+        --primary-accent: #D99A6C;
+        /* Muted Terracotta - Buttons & highlights */
+        --primary-text: #556B2F;
+        /* Deep Olive Green - Main text & accents */
+    
+        /* 🎨 Secondary Colors (Supporting the Design) */
+        --secondary-text: #3B4D61;
+        /* Muted Navy Blue - Headings & navigation */
+        --secondary-bg: #A57C65;
+        /* Soft Walnut Brown - Cards & containers */
+        --light-bg: #FAF3E0;
+        /* Off-White - Soft contrast sections */
+    
+        /* 🎨 Accent Colors (For Highlights & CTAs) */
+        --highlight: #E2B649;
+        /* Golden Mustard - Progress bars & achievements */
+        --warning: #B55242;
+        /* Rust Red - Alerts & timeouts */
+    
+        /* 🎨 Neutral Colors */
+        --white: #FFFFFF;
+        /* Pure White */
+        --black: #222222;
+        /* Deep Black - High contrast text */
+        
+        /* fonts */
+        --fs-14: .9em;
+        --fs-18: 1.1em;
+        --fs-20: 1.2em;
+        --fs-24: 1.4em;
+        --fs-32: 2em;
+        --fs-48: 3em;
+}
 /* lora-regular - latin */
 @font-face {
     font-display: swap;
@@ -51,9 +88,12 @@
 a {
     text-decoration: none;
 }
-
+h2 {
+    margin: 0;
+}
 body {
     transition: .3s;
+    margin: 0;
 }
 
 ul {
@@ -88,8 +128,46 @@ html {
 }
 
 .container {
-    padding: 15px 0;
+    padding: 0 15px;
     margin: 0 auto;
 
 }
 /* End Glaobal Rules */
+/* Start Header Sections */
+header {
+    background-color: var(--secondary-text);
+}
+header .container{
+    display: flex;
+    justify-content: space-between;
+}
+header .logo {
+    color: var(--highlight);
+    font-weight: 700;
+    font-size: var(--fs-32);
+    margin: auto 0;
+}
+header .menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+header .menu li a {
+    color: var(--white);
+    text-transform: uppercase
+}
+header .menu li a:hover {
+    color: var(--highlight);
+}
+header .menu .dark-mode svg {
+    width: 35px;
+    height: 35px;
+    transition: .3s;
+    fill: var(--highlight);
+    border-radius: 50%;
+    cursor: pointer;
+}
+header .menu .dark-mode .moon {
+    display: none;
+}
+/* End Header Sections */
