@@ -147,6 +147,11 @@ header .logo {
     font-size: var(--fs-32);
     margin: auto 0;
 }
+header .links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
 header .menu {
     display: flex;
     align-items: center;
@@ -154,12 +159,13 @@ header .menu {
 }
 header .menu li a {
     color: var(--white);
-    text-transform: uppercase
+    text-transform: uppercase;
+    transition: .3s;
 }
 header .menu li a:hover {
     color: var(--highlight);
 }
-header .menu .dark-mode svg {
+header .links .dark-mode svg {
     width: 35px;
     height: 35px;
     transition: .3s;
@@ -167,7 +173,61 @@ header .menu .dark-mode svg {
     border-radius: 50%;
     cursor: pointer;
 }
-header .menu .dark-mode .moon {
+header .links .dark-mode .moon {
     display: none;
+}
+.menu-clicked {
+    display: flex !important;
+    flex-direction: column !important;
+    position: absolute;
+    bottom: -55px;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--secondary-text);
+    opacity: .8;
+    z-index: 100;
+}
+
+header .toggle-menu {
+    width: 20px;
+    height: 30px;
+    position: relative;
+    display: none;
+    cursor: pointer
+}
+
+header .toggle-menu .line {
+    width: 20px;
+    height: 2px;
+    background-color: var(--white);
+    margin: 6px;
+    transition: .3s;
+}
+
+.line-move {
+    position: absolute;
+    top: 30%;
+    left: 0;
+    height: 1.5px;
+}
+
+.line12-rotate {
+    transform: rotate(45deg);
+    margin: 0;
+}
+
+.line3-rotate {
+    transform: rotate(-45deg);
+    margin: 0;
+}
+
+@media(max-width: 768px) {
+    header .container .links .menu {
+        display: none;
+    }
+    header .toggle-menu {
+        display: block;
+    }
 }
 /* End Header Sections */
