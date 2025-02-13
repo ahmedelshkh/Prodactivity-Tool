@@ -272,9 +272,12 @@ header .toggle-menu .line {
     stroke: var(--warning);
     stroke-width: 7;
     fill: transparent;
-    stroke-dasharray: 406;
-    stroke-dashoffset: 406;
+    stroke-dasharray: 280;
+    stroke-dashoffset: 280;
     stroke-linecap: round;
+}
+.progress-precentege {
+    stroke-dashoffset: 280;
 }
 .home .circle .time {
     position: absolute;
@@ -306,6 +309,7 @@ header .toggle-menu .line {
     text-align: center;
     margin-right: 20px;
     cursor: pointer;
+    transition: .3s;
 }
 .home .control-buttons a {
     font-size: var(--fs-32);
@@ -316,6 +320,7 @@ header .toggle-menu .line {
     color: var(--white);
     text-align: center;
     margin-right: 20px;
+    transition: .3s;
 }
 .home .control-buttons .edit-btn {
     font-size: var(--fs-32);
@@ -326,6 +331,7 @@ header .toggle-menu .line {
     color: var(--white);
     text-align: center;
     cursor: pointer;
+    transition: .3s;
 }
 .home .control-buttons *:hover {
     background-color: var(--warning);
