@@ -35,6 +35,7 @@
         --fs-24: 1.4em;
         --fs-32: 2em;
         --fs-48: 3em;
+        --fs-144: 9em;
 }
 /* lora-regular - latin */
 @font-face {
@@ -231,3 +232,103 @@ header .toggle-menu .line {
     }
 }
 /* End Header Sections */
+/* Start Home Section */
+.home {
+    background-color: var(--primary-bg);
+}
+.home .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: calc(100vh - 50px);
+}
+.home .circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.home svg {
+    width: 450px;
+    height: 450px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.home svg .stroke-bg {
+    cx: 50;
+    cy: 50;
+    r: 45;
+    stroke: var(--secondary-bg);
+    stroke-width: 7;
+    fill: transparent;
+}
+.home svg #progress {
+    x: 50;
+    cy: 50;
+    r: 45;
+    stroke: var(--warning);
+    stroke-width: 7;
+    fill: transparent;
+    stroke-dasharray: 406;
+    stroke-dashoffset: 406;
+    stroke-linecap: round;
+}
+.home .circle .time {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--secondary-bg);
+    font-weight: bold;
+    font-size: var(--fs-144);
+    z-index: 1000;
+    width: 85%;
+    height: 85%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-bg);
+    border-radius: 50%;
+}
+.home .control-buttons {
+    padding: 25px;
+}
+.home .control-buttons .start-btn {
+    font-size: var(--fs-32);
+    display: inline-block;
+    background-color: var(--primary-text);
+    padding: 10px 20px;
+    border-radius: 17px;
+    color: var(--white);
+    text-align: center;
+    margin-right: 20px;
+    cursor: pointer;
+}
+.home .control-buttons a {
+    font-size: var(--fs-32);
+    display: inline-block;
+    background-color: var(--primary-text);
+    padding: 10px 20px;
+    border-radius: 17px;
+    color: var(--white);
+    text-align: center;
+    margin-right: 20px;
+}
+.home .control-buttons .edit-btn {
+    font-size: var(--fs-32);
+    display: inline-block;
+    background-color: var(--primary-text);
+    padding: 10px 20px;
+    border-radius: 17px;
+    color: var(--white);
+    text-align: center;
+    cursor: pointer;
+}
+.home .control-buttons *:hover {
+    background-color: var(--warning);
+    opacity: .7;
+}
+/* Start Home Section */
