@@ -46,22 +46,27 @@ menu.onclick = function () {
 // Start Timer Functionality
 
 let timerText = document.querySelector(".home .circle .time");
+let startBtn = document.querySelector(".home .control-buttons .start-btn");
+let editBtn = document.querySelector(".home .control-buttons .edit-btn");
+let prograssPar = document.querySelector("#progress");
+let workStatus = document.querySelector(".home .circle .status");
+let selectTimeEditBtn = document.querySelector(".home .control-buttons .edit-btn");
+let selectTimeBox = document.querySelector(".home .control-buttons .edit-box");
+let selectTimeIn = document.querySelector("#minutes-number");
+let selectTimeSubmitButton = document.querySelector(".home .control-buttons .edit-box .submit");
+let selectTimeExitButton = document.querySelector(".home .control-buttons .edit-btn form svg");
+
+
 let timerMinutes = 30;
 let timerSeconds = 0;
 let allTime = timerMinutes * 60 + timerSeconds;
 let allTimeNow = allTime;
-let startBtn = document.querySelector(".home .control-buttons .start-btn");
-let editBtn = document.querySelector(".home .control-buttons .edit-btn");
-let prograssPar = document.querySelector("#progress");
 let timerStart = false;
-let workStatus = document.querySelector(".home .circle .status");
 let breakTime = true;
 
 // On Click On Start Button
 startBtn.addEventListener("click", function() {
     if(timerStart){
-        startBtn.textContent = "Start";
-        timerStart = false;
         stopTimer();
     }else {
         startTimer();
@@ -113,7 +118,9 @@ function countTime() {
     prograssPrecentege();
 };
 // Stop The Timer
-function stopTimer() { 
+function stopTimer() {
+    startBtn.textContent = "Start";
+    timerStart = false;
     startTimer(true);
 };
 // Calculate the progress precentege
@@ -130,7 +137,12 @@ function timerCompleted() {
     timerStart = false;
     if(breakTime) {
         workStatus.textContent = "Break Time";
-        updateTime(5);
+        if(allTime / 60 >= 50) {
+            updateTime(10);
+        }else {
+            updateTime(5);
+        }
+        
     }else {
         workStatus.textContent = "Work Time";
         updateTime(30);
@@ -142,5 +154,24 @@ function updateTime(minutes) {
     timerMinutes = minutes;
     allTime = timerMinutes * 60 + timerSeconds;
     allTimeNow = allTime;
-    timerText.textContent = `${timerMinutes}:${timerSeconds}`;
+    timerText.textContent = `${timerMinutes}:00`;
+}
+// Editing The Time
+selectTimeEditBtn.onclick = () => selectTimeBox.style.cssText = "display:block;top: -112px;right: -164px; ";
+selectTimeExitButton.onclick = () => selectTimeBox.style.cssText = "display:none;top: -112px;right: -164px;";
+selectTimeSubmitButton.onclick = function() {
+    if (selectTimeIn.value < 5 || selectTimeIn.textContent > 1200) {
+        let textWarning = document.createElement('div');
+        textWarning.textContent = "It Must be bigger than 5 minutes"
+        textWarning.style.cssText = "color: red; font-size: 14; wrap-content: wrap; margin-top: 10px;";
+        selectTimeIn.style.color = "red";
+        selectTimeBox.append(textWarning);
+    }else {
+        timerSeconds = 0;
+        if(timerStart){
+            stopTimer();
+        }
+        updateTime(selectTimeIn.value);
+        selectTimeBox.style.display = "none"
+    }
 }
