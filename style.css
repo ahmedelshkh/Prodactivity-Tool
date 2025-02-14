@@ -256,6 +256,7 @@ header .toggle-menu .line {
     display: flex;
     justify-content: center;
     align-items: center;
+    transform: rotate(-90deg);
 }
 .home svg .stroke-bg {
     cx: 50;
@@ -276,9 +277,6 @@ header .toggle-menu .line {
     stroke-dashoffset: 280;
     stroke-linecap: round;
 }
-.progress-precentege {
-    stroke-dashoffset: 280;
-}
 .home .circle .time {
     position: absolute;
     top: 50%;
@@ -295,6 +293,15 @@ header .toggle-menu .line {
     justify-content: center;
     background-color: var(--primary-bg);
     border-radius: 50%;
+}
+.home .circle .status {
+    position: absolute;
+    top: 67%;
+    z-index: 1000;
+    font-size: var(--fs-18);
+    color: var(--secondary-bg);
+    font-weight: bold;
+    opacity: .8;
 }
 .home .control-buttons {
     padding: 25px;

@@ -54,7 +54,10 @@ let startBtn = document.querySelector(".home .control-buttons .start-btn");
 let editBtn = document.querySelector(".home .control-buttons .edit-btn");
 let prograssPar = document.querySelector("#progress");
 let timerStart = false;
+let workStatus = document.querySelector(".home .circle .status");
+let breakTime = true;
 
+// On Click On Start Button
 startBtn.addEventListener("click", function() {
     if(timerStart){
         startBtn.textContent = "Start";
@@ -67,9 +70,9 @@ startBtn.addEventListener("click", function() {
     }
 });
 
+// On The Time Start
 function startTimer(stop) {
     if (stop) {
-        console.log("stoped");
         clearInterval(timerInterval);
     }else {
         timerInterval = setInterval(() => {
@@ -89,9 +92,17 @@ function startTimer(stop) {
     
 };
 
+// Count The Time
 function countTime() {
     if(timerMinutes < 1 && timerSeconds < 1) {
-        timerCompleted();
+        if(breakTime) {
+            timerCompleted();
+            breakTime = false;
+        } else {
+            timerCompleted();
+            breakTime = true;
+        }
+        
     }
     if(timerSeconds < 1) {
         timerMinutes -= 1;
@@ -101,12 +112,35 @@ function countTime() {
     };
     prograssPrecentege();
 };
+// Stop The Timer
 function stopTimer() { 
     startTimer(true);
 };
+// Calculate the progress precentege
 function prograssPrecentege() {
     allTimeNow = timerMinutes * 60 + timerSeconds;;
     let precentege = allTimeNow / allTime;
     let prograssPos = precentege * 280;
     prograssPar.style.strokeDashoffset = prograssPos;
+};
+// When The Time is Completed
+function timerCompleted() {
+    startTimer(true);
+    startBtn.textContent = "Start";
+    timerStart = false;
+    if(breakTime) {
+        workStatus.textContent = "Break Time";
+        updateTime(5);
+    }else {
+        workStatus.textContent = "Work Time";
+        updateTime(30);
+    }
+    
+}
+// Updating the time
+function updateTime(minutes) {
+    timerMinutes = minutes;
+    allTime = timerMinutes * 60 + timerSeconds;
+    allTimeNow = allTime;
+    timerText.textContent = `${timerMinutes}:${timerSeconds}`;
 }
