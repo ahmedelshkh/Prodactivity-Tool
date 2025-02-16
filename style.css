@@ -1,26 +1,48 @@
 /* Start Glaobal Rules */
 :root {
-    /* 🎨 Primary Colors (Main Identity) */
+    /* 🌿 Background Colors */
         --primary-bg: #F5E8D9;
-        /* Warm Beige - Cozy background */
-        --primary-accent: #D99A6C;
-        /* Muted Terracotta - Buttons & highlights */
-        --primary-text: #556B2F;
-        /* Deep Olive Green - Main text & accents */
+        /* Warm Beige - Main background for a cozy feel */
+        --header-bg: #3B4D61;
+        /* Muted Navy Blue - Header background for contrast */
+        --section-bg: #FAF3E0;
+        /* Off-White - For subtle section differentiation */
     
-        /* 🎨 Secondary Colors (Supporting the Design) */
+        /* 🎯 Text Colors */
+        --primary-text: #704F40;
+        /* Warm Brown - Main text for a classic look */
         --secondary-text: #3B4D61;
-        /* Muted Navy Blue - Headings & navigation */
-        --secondary-bg: #A57C65;
-        /* Soft Walnut Brown - Cards & containers */
-        --light-bg: #FAF3E0;
-        /* Off-White - Soft contrast sections */
+        /* Muted Navy Blue - Used in headers & links */
+        --highlight-text: #E2B649;
+        /* Golden Mustard - Important text highlights */
     
-        /* 🎨 Accent Colors (For Highlights & CTAs) */
-        --highlight: #E2B649;
-        /* Golden Mustard - Progress bars & achievements */
-        --warning: #B55242;
-        /* Rust Red - Alerts & timeouts */
+        /* 🔘 Timer Colors */
+        --timer-border: #A57C65;
+        /* Soft Walnut Brown - Timer ring */
+        --timer-text: #8B5E3C;
+        /* Darker Walnut - Timer numbers for readability */
+        --timer-progress: #B55242;
+        /* Rust Red - Timer progress indicator */
+    
+        /* ✅ Buttons & Interactive Elements */
+        --button-bg: #6B8E23;
+        /* Deep Olive Green - Buttons for a natural feel */
+        --button-text: #FFFFFF;
+        /* White - Ensures good contrast */
+        --button-hover: #5E7D2A;
+        /* Lighter Olive - Button hover effect */
+    
+        /* 📌 Input Fields */
+        --input-bg: #FAF3E0;
+        /* Off-White - Clean and minimal for easy reading */
+        --input-border: #A57C65;
+        /* Soft Walnut Brown - Keeps a warm aesthetic */
+        --input-text: #704F40;
+        /* Warm Brown - Matches text for consistency */
+    
+        /* 🚨 Warning & Alerts */
+        --error-text: #B55242;
+        /* Rust Red - For errors & important alerts */
     
         /* 🎨 Neutral Colors */
         --white: #FFFFFF;
@@ -136,14 +158,14 @@ html {
 /* End Glaobal Rules */
 /* Start Header Sections */
 header {
-    background-color: var(--secondary-text);
+    background-color: var(--header-bg);
 }
 header .container{
     display: flex;
     justify-content: space-between;
 }
 header .logo {
-    color: var(--highlight);
+    color: var(--highlight-text);
     font-weight: 700;
     font-size: var(--fs-32);
     margin: auto 0;
@@ -164,13 +186,13 @@ header .menu li a {
     transition: .3s;
 }
 header .menu li a:hover {
-    color: var(--highlight);
+    color: var(--highlight-text);
 }
 header .links .dark-mode svg {
     width: 35px;
     height: 35px;
     transition: .3s;
-    fill: var(--highlight);
+    fill: var(--highlight-text);
     border-radius: 50%;
     cursor: pointer;
 }
@@ -236,7 +258,7 @@ header .toggle-menu .line {
 .home {
     background-color: var(--primary-bg);
 }
-.home .container {
+.home > .container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -262,7 +284,7 @@ header .toggle-menu .line {
     cx: 50;
     cy: 50;
     r: 45;
-    stroke: var(--secondary-bg);
+    stroke: var(--timer-border);
     stroke-width: 7;
     fill: transparent;
 }
@@ -270,7 +292,7 @@ header .toggle-menu .line {
     x: 50;
     cy: 50;
     r: 45;
-    stroke: var(--warning);
+    stroke: var(--timer-progress);
     stroke-width: 7;
     fill: transparent;
     stroke-dasharray: 280;
@@ -282,7 +304,7 @@ header .toggle-menu .line {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    color: var(--secondary-bg);
+    color: var(--timer-text);
     font-weight: bold;
     font-size: var(--fs-144);
     z-index: 1000;
@@ -299,7 +321,7 @@ header .toggle-menu .line {
     top: 67%;
     z-index: 1000;
     font-size: var(--fs-18);
-    color: var(--secondary-bg);
+    color: var(--timer-text);
     font-weight: bold;
     opacity: .8;
 }
@@ -309,7 +331,8 @@ header .toggle-menu .line {
 .home .control-buttons .start-btn {
     font-size: var(--fs-32);
     display: inline-block;
-    background-color: var(--primary-text);
+    background-color: var(--button-bg);
+    background: linear-gradient(180deg, #6B8E23 0%, #556B2F 100%);
     padding: 10px 20px;
     border-radius: 17px;
     color: var(--white);
@@ -321,7 +344,8 @@ header .toggle-menu .line {
 .home .control-buttons a {
     font-size: var(--fs-32);
     display: inline-block;
-    background-color: var(--primary-text);
+    background-color: var(--button-bg);
+    background: linear-gradient(180deg, #6B8E23 0%, #556B2F 100%);
     padding: 10px 20px;
     border-radius: 17px;
     color: var(--white);
@@ -332,7 +356,8 @@ header .toggle-menu .line {
 .home .control-buttons .edit-btn {
     font-size: var(--fs-32);
     display: inline-block;
-    background-color: var(--primary-text);
+    background-color: var(--button-bg);
+    background: linear-gradient(180deg, #6B8E23 0%, #556B2F 100%);
     padding: 10px 20px;
     border-radius: 17px;
     color: var(--white);
@@ -346,7 +371,7 @@ header .toggle-menu .line {
     padding: 20px;
     top: -20px;
     right: -50px;
-    background-color: var(--primary-text);
+    background-color: var(--section-bg);
     border-radius: 10px;
     box-shadow: 0px 1px 10px 3px #00000052;
     transition: .3s;
@@ -371,9 +396,10 @@ header .toggle-menu .line {
     padding: 10px;
     border-radius: 11px;
     outline: none;
-    background-color: #eee;
+    background-color: var(--input-bg);
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.15);
     border: none;
-    color: #888;
+    color: var(--input-text);
     box-sizing: border-box;
     transition: .3s;
 }
@@ -381,18 +407,20 @@ header .toggle-menu .line {
     border: 1px solid var(--black);
 }
 .home .control-buttons .edit-box .submit {
+    background: linear-gradient(180deg, #6B8E23 0%, #556B2F 100%);
+    color: var(--button-text);
+    padding: 12px 20px;
+    border-radius: 8px;
     font-weight: bold;
+    transition: 0.3s ease-in-out;
     border: none;
-    border-radius: 50%;
-    padding: 10px;
-    background-color: var(--primary-accent);
-    color: white;
+    background-color: var(--button-bg);
     cursor: pointer;
     box-shadow: 0px 1px 10px 3px #00000052;
 }
 .home .control-buttons > *:hover {
-    background-color: var(--warning);
-    opacity: .7;
+    background-color: var(--button-hover);
+    scale: 1.05;
 }
 /* End Home Section */
 /* Start Tasks Section */
@@ -423,26 +451,28 @@ header .toggle-menu .line {
 }
 .home .tasks form .task-info {
     display: flex;
-    background-color: var(--primary-bg);
+    background-color: var(--input-bg);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 6px;
 }
 .home .tasks form #task-name {
     width: 300px;
-    background-color: var(--primary-bg);
-    color: #888;
+    background-color: var(--input-bg);
+    color: var(--input-text);
     padding: 10px;
     border: none;
-    border: 1px solid var(--secondary-bg);
+    border: 1px solid var(--input-border);
     border-right: none;
     border-radius: 6px 0 0 6px;
     outline: none;
 }
 .home .tasks form #task-duration {
     width: 100px;
-    background-color: var(--primary-bg);
-    color: #888;
+    background-color: var(--input-bg);
+    color: var(--input-text);
     padding: 10px;
     border: none;
-    border: 1px solid var(--secondary-bg);
+    border: 1px solid var(--input-border);
     border-radius: 0 6px 6px 0;
     outline: none;
 }
@@ -450,10 +480,11 @@ header .toggle-menu .line {
     background-color: var(--primary-bg);
     font-size: var(--fs-18);
     padding: 10px 20px;
-    border: 1px solid var(--secondary-bg);
+    border: 1px solid var(--input-border);
     border-radius: 10px;
-    color: var(--secondary-bg);
+    color: var(--input-border);
     cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 .home .tasks .tasks-list .task {
     margin: 20px auto 0 auto;
@@ -464,23 +495,23 @@ header .toggle-menu .line {
     font-size: var(--fs-18);
     font-weight: bold;
     width: 250px;
-    color: var(--warning);
-    border: 1px solid var(--black);
+    color: var(--primary-text);
+    border: 1px solid var(--primary-text);
     padding: 10px;
 }
 .home .tasks .tasks-list .clear-task {
     font-size: var(--fs-18);
     padding: 10px;
-    color: #888;
-    border: 1px solid var(--black);
+    color: var(--secondary-text);
+    border: 1px solid var(--primary-text);
     border-left: none;
     cursor: pointer;
 }
 .home .tasks .tasks-list .start-task {
     font-size: var(--fs-18);
     padding: 10px;
-    color: #888;
-    border: 1px solid var(--black);
+    color: var(--secondary-text);
+    border: 1px solid var(--primary-text);
     border-left: none;
     cursor: pointer;
 }
