@@ -57,7 +57,7 @@ let selectTimeSubmitButton = document.querySelector(".home .control-buttons .edi
 let selectTimeExitButton = document.querySelector(".home .control-buttons .edit-btn form svg");
 
 
-let timerMinutes = 30;
+let timerMinutes = 1;
 let timerSeconds = 0;
 let allTime = timerMinutes * 60 + timerSeconds;
 let allTimeNow = allTime;
@@ -172,6 +172,6 @@ selectTimeSubmitButton.onclick = function() {
             stopTimer();
         }
         updateTime(selectTimeIn.value);
-        selectTimeBox.style.display = "none"
+        selectTimeBox.style.display = "none";
     }
 }

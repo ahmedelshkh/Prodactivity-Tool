@@ -394,4 +394,96 @@ header .toggle-menu .line {
     background-color: var(--warning);
     opacity: .7;
 }
-/* Start Home Section */
+/* End Home Section */
+/* Start Tasks Section */
+.home .tasks .line {
+    width: 100%;
+    height: 1px;
+    background-color: var(--black);
+    position: relative;
+    margin-bottom: 50px;
+}
+.home .tasks .line::before {
+    content: "Tasks";
+    position: absolute;
+    font-size: var(--fs-24);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 15px 30px;
+    border: 1px solid var(--black);
+    color: var(--secondary-bg);
+    background-color: var(--primary-bg);
+}
+.home .tasks form {
+    width: fit-content;
+    margin: 0 auto;
+    display: flex;
+    gap: 20px;
+}
+.home .tasks form .task-info {
+    display: flex;
+    background-color: var(--primary-bg);
+}
+.home .tasks form #task-name {
+    width: 300px;
+    background-color: var(--primary-bg);
+    color: #888;
+    padding: 10px;
+    border: none;
+    border: 1px solid var(--secondary-bg);
+    border-right: none;
+    border-radius: 6px 0 0 6px;
+    outline: none;
+}
+.home .tasks form #task-duration {
+    width: 100px;
+    background-color: var(--primary-bg);
+    color: #888;
+    padding: 10px;
+    border: none;
+    border: 1px solid var(--secondary-bg);
+    border-radius: 0 6px 6px 0;
+    outline: none;
+}
+.home .tasks form .add-btn {
+    background-color: var(--primary-bg);
+    font-size: var(--fs-18);
+    padding: 10px 20px;
+    border: 1px solid var(--secondary-bg);
+    border-radius: 10px;
+    color: var(--secondary-bg);
+    cursor: pointer;
+}
+.home .tasks .tasks-list .task {
+    margin: 20px auto 0 auto;
+    width: fit-content;
+    display: flex;
+}
+.home .tasks .tasks-list .task-name {
+    font-size: var(--fs-18);
+    font-weight: bold;
+    width: 250px;
+    color: var(--warning);
+    border: 1px solid var(--black);
+    padding: 10px;
+}
+.home .tasks .tasks-list .clear-task {
+    font-size: var(--fs-18);
+    padding: 10px;
+    color: #888;
+    border: 1px solid var(--black);
+    border-left: none;
+    cursor: pointer;
+}
+.home .tasks .tasks-list .start-task {
+    font-size: var(--fs-18);
+    padding: 10px;
+    color: #888;
+    border: 1px solid var(--black);
+    border-left: none;
+    cursor: pointer;
+}
+/* End Home Section */
+
+
