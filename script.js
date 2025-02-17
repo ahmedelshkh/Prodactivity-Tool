@@ -177,14 +177,12 @@ selectTimeEditBtn.onclick = () => {
         selectTimeBox.classList.remove("display-block");
     }else {
         selectTimeBox.classList.add("display-block");
-        console.log("added");
     }
     
 };
 selectTimeExitButton.onclick = () => {
     if (selectTimeBox.classList.contains("display-block")) {
         selectTimeBox.classList.remove("display-block");
-        console.log("removed");
     };
 };
 selectTimeSubmitButton.onclick = function() {

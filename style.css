@@ -57,6 +57,7 @@
         --fs-24: 1.4em;
         --fs-32: 2em;
         --fs-48: 3em;
+        --fs-100: 7em;
         --fs-144: 9em;
 }
 /* lora-regular - latin */
@@ -209,7 +210,7 @@ header .links .dark-mode .moon {
     height: 100%;
     background: var(--secondary-text);
     opacity: .8;
-    z-index: 100;
+    z-index: 2000;
 }
 
 header .toggle-menu {
@@ -245,7 +246,7 @@ header .toggle-menu .line {
     margin: 0;
 }
 
-@media(max-width: 768px) {
+@media(max-width: 991px) {
     header .container .links .menu {
         display: none;
     }
@@ -273,7 +274,7 @@ header .toggle-menu .line {
 }
 .home svg {
     width: 450px;
-    height: 450px;
+    height: auto;
     overflow: hidden;
     display: flex;
     justify-content: center;
@@ -433,6 +434,20 @@ header .toggle-menu .line {
 .display-block {
     display: block;
 }
+@media(max-width: 768px) {
+    .home svg {
+        max-width: 100%;
+    }
+    .home .circle .time {
+        font-size: var(--fs-100)
+    }
+    .home .control-buttons {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        flex-direction: column;
+    }
+}
 /* End Home Section */
 /* Start Tasks Section */
 .home .tasks .line {
@@ -467,7 +482,7 @@ header .toggle-menu .line {
     border-radius: 6px;
 }
 .home .tasks form #task-name {
-    width: 300px;
+    width: 70%;
     background-color: var(--input-bg);
     color: var(--input-text);
     padding: 10px;
@@ -478,7 +493,7 @@ header .toggle-menu .line {
     outline: none;
 }
 .home .tasks form #task-duration {
-    width: 100px;
+    width: 30%;
     background-color: var(--input-bg);
     color: var(--input-text);
     padding: 10px;
@@ -497,18 +512,22 @@ header .toggle-menu .line {
     cursor: pointer;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
+.home .tasks-list {
+    padding-bottom: 20px;
+}
 #task-div {
     margin: 20px auto 0 auto;
-    width: fit-content;
     display: flex;
 }
 #task-name-div {
     font-size: var(--fs-18);
     font-weight: bold;
-    width: 250px;
+    width: 100%;
     color: var(--primary-text);
     border: 1px solid var(--primary-text);
     padding: 10px;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 #clear-task-btn {
     font-size: var(--fs-18);
@@ -525,6 +544,11 @@ header .toggle-menu .line {
     border: 1px solid var(--primary-text);
     border-left: none;
     cursor: pointer;
+}
+@media(max-width: 768px) {
+    .home .tasks form {
+        flex-direction: column;
+    }
 }
 /* End Home Section */
 
