@@ -4,7 +4,6 @@ let menu = document.querySelector("header .links .menu");
 let link = document.querySelectorAll("header .links .menu li a");
 let toggleLines = document.querySelectorAll("header .toggle-menu .line");
 
-console.log(link);
 let click = true;
 
 toggleMenu.onclick = function (e) {
@@ -56,13 +55,25 @@ let selectTimeIn = document.querySelector("#minutes-number");
 let selectTimeSubmitButton = document.querySelector(".home .control-buttons .edit-box .submit");
 let selectTimeExitButton = document.querySelector(".home .control-buttons .edit-box form .exit");
 
+let defaultTimeMin = localStorage.getItem("timeM");
+let defaultTimeSec = localStorage.getItem("timeS");
 
-let timerMinutes = 1;
+let timerMinutes = 30;
 let timerSeconds = 0;
-let allTime = timerMinutes * 60 + timerSeconds;
-let allTimeNow = allTime;
 let timerStart = false;
 let breakTime = true;
+
+if (defaultTimeMin) {
+    timerMinutes = parseInt(defaultTimeMin);
+    timerSeconds = parseInt(defaultTimeSec);
+    updateTimerText();
+} else {
+    timerMinutes = 30;
+    timerSeconds = 0;
+}
+
+let allTime = timerMinutes * 60 + timerSeconds;
+let allTimeNow = allTime;
 
 // On Click On Start Button
 startBtn.addEventListener("click", function() {
@@ -82,20 +93,24 @@ function startTimer(stop) {
     }else {
         timerInterval = setInterval(() => {
         countTime();
-        if(timerMinutes < 10 && timerSeconds < 10) {
-            timerText.textContent = `0${timerMinutes}:0${timerSeconds}`;
-        } else if (timerMinutes < 10) {
-            timerText.textContent = `0${timerMinutes}:${timerSeconds}`;
-        } else if (timerSeconds < 10) {
-            timerText.textContent = `${timerMinutes}:0${timerSeconds}`;
-        } else {
-            timerText.textContent = `${timerMinutes}:${timerSeconds}`;
-        }
-        
+        updateTimerText();
+        updateLSV(30);
     }, 1000);
     };
     
 };
+
+function updateTimerText() {
+    if (timerMinutes < 10 && timerSeconds < 10) {
+        timerText.textContent = `0${timerMinutes}:0${timerSeconds}`;
+    } else if (timerMinutes < 10) {
+        timerText.textContent = `0${timerMinutes}:${timerSeconds}`;
+    } else if (timerSeconds < 10) {
+        timerText.textContent = `${timerMinutes}:0${timerSeconds}`;
+    } else {
+        timerText.textContent = `${timerMinutes}:${timerSeconds}`;
+    }
+}
 
 // Count The Time
 function countTime() {
@@ -107,7 +122,6 @@ function countTime() {
             timerCompleted();
             breakTime = true;
         }
-        
     }
     if(timerSeconds < 1) {
         timerMinutes -= 1;
@@ -135,6 +149,7 @@ function timerCompleted() {
     startTimer(true);
     startBtn.textContent = "Start";
     timerStart = false;
+    updateLSV(30);
     if(breakTime) {
         workStatus.textContent = "Break Time";
         if(allTime / 60 >= 50) {
@@ -199,47 +214,16 @@ let tasksArray = [];
 let localStorageValue = localStorage.getItem("taskList");
 
 
-if(localStorageValue) {
-    tasksArray = JSON.parse(localStorage.getItem("taskList"));
-}
 
+let clearTaskBtn = document.createElement("div");
+let startTaskBtn = document.createElement("div");
 
+clearTaskBtn.id = "clear-task-btn";
+startTaskBtn.id = "start-task-btn";
+
+getTasksFromLocal();
 // Getting the tasks from the local storage
-for(i in tasksArray) {
-    let taskDiv = document.createElement("div");
-    let taskNameDiv = document.createElement("div");
-    let clearTaskBtn = document.createElement("div");
-    let startTaskBtn = document.createElement("div");
-    let duration = tasksArray[i].taskDuration;
-    taskNameDiv.textContent = tasksArray[i].taskName;
 
-    clearTaskBtn.textContent = "Clear";
-    startTaskBtn.textContent = "Start";
-
-
-    taskDiv.id = "task-div";;
-    taskNameDiv.id = "task-name-div";
-    clearTaskBtn.id = "clear-task-btn";
-    startTaskBtn.id = "start-task-btn";
-
-    taskDiv.append(taskNameDiv, clearTaskBtn, startTaskBtn);
-    taskListHolder.append(taskDiv);
-
-    // When The user click on the clear or start button
-    startTaskBtn.addEventListener("click", function (event) {
-        if (event.currentTarget.id === "start-task-btn") {
-            updateTime(duration);
-        };
-    });
-    clearTaskBtn.addEventListener("click", function (event) {
-        for(i in tasksArray){
-            if(tasksArray[i].taskName = taskNameDiv.textContent) {
-                tasksArray.pop(i);
-                localStorage.setItem("taskList",JSON.stringify(tasksArray));
-            };
-        }
-    });
-}
 
 submitTaskButton.addEventListener("click", function() {
     if (taskNameIn.value.length > 45 || taskNameIn.value.length < 2 || taskDurationIn.value < 5 || taskDurationIn > 1200) {
@@ -258,33 +242,80 @@ submitTaskButton.addEventListener("click", function() {
             taskForm.append(textWarning);
         }
     }else {
-        // Adding the tasks to the local storage
-        tasksArray.push({
-            taskName: taskNameIn.value,
-            taskDuration: taskDurationIn.value
-        });
-        localStorage.setItem("taskList",JSON.stringify(tasksArray));
-        // adding the task elements to the task list
-        let taskDiv = document.createElement("div");
-        let taskNameDiv = document.createElement("div");
-        let clearTaskBtn = document.createElement("div");
-        let startTaskBtn = document.createElement("div");
-
-        taskNameDiv.textContent = tasksArray[tasksArray.length-1].taskName;
-        clearTaskBtn.textContent = "Clear";
-        startTaskBtn.textContent = "Start";
-
-
-        taskDiv.id ="task-div";;
-        taskNameDiv.id = "task-name-div";
-        clearTaskBtn.id = "clear-task-btn";
-        startTaskBtn.id = "start-task-btn";
-
-        taskDiv.append(taskNameDiv,clearTaskBtn,startTaskBtn);
-        taskListHolder.append(taskDiv);
-
+        addTasksToLocal();
+        LoadTasks();
         // Clear Task Inputs 
         taskNameIn.value = "";
         taskDurationIn.value = "";
     }
 });
+
+function getTasksFromLocal() {
+    if (localStorageValue) {
+        tasksArray = JSON.parse(localStorage.getItem("taskList"));
+        LoadTasks();
+    }
+}
+
+function LoadTasks() { 
+        removeTaskListChilds();
+        for(i in tasksArray) {
+            let taskDiv = document.createElement("div");
+            let taskNameDiv = document.createElement("div");
+            let clearTaskBtn = document.createElement("div");
+            let startTaskBtn = document.createElement("div");
+            let duration = tasksArray[i].taskDuration;
+            let index = i;
+
+            taskDiv.id = "task-div";;
+            taskNameDiv.id = "task-name-div";
+            clearTaskBtn.id = "clear-task-btn";
+            startTaskBtn.id = "start-task-btn";
+
+            taskNameDiv.textContent = tasksArray[i].taskName;
+            clearTaskBtn.textContent = "Clear";
+            startTaskBtn.textContent = "Start";
+
+            taskDiv.append(taskNameDiv, clearTaskBtn, startTaskBtn);
+            taskListHolder.append(taskDiv);
+
+            // When The user click on the clear or start button
+            startTaskBtn.addEventListener("click", function (event) {
+                onClickStart(duration, index);
+            });
+            clearTaskBtn.addEventListener("click", function (event) {
+                removeTaskFromLocal(index);
+            });
+        }
+};
+
+function removeTaskListChilds() {
+    while (taskListHolder.firstChild) {
+        taskListHolder.removeChild(taskListHolder.firstChild);
+    }
+};
+
+function addTasksToLocal() {
+    tasksArray.push({
+        taskName: taskNameIn.value,
+        taskDuration: taskDurationIn.value
+    });
+    updateLSV();
+};
+function removeTaskFromLocal(index,duration) {
+    tasksArray.splice(index,1);
+    updateLSV(duration);
+    LoadTasks();
+}
+function onClickStart(duration,index) {
+    updateTime(duration);
+    removeTaskFromLocal(index,duration);
+}
+
+function updateLSV(timeM,TimeS = 0) {
+    if(timeM) {
+        localStorage.setItem("timeM", timeM);
+        localStorage.setItem("timeS", TimeS);
+    }
+    localStorage.setItem("taskList", JSON.stringify(tasksArray));
+}
