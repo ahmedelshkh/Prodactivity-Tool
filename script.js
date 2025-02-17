@@ -62,7 +62,10 @@ let timerMinutes = 30;
 let timerSeconds = 0;
 let timerStart = false;
 let breakTime = true;
-let coundDwonAudio = new Audio('/audio/countDwon.m4a');
+let coundDwonAudio = new Audio('/audio/countDown.m4a');
+let coundDwonMAudio = new Audio('/audio/countDownM.m4a');
+let clickAudio = new Audio('/audio/click.m4a');
+let completedAudio = new Audio('/audio/completed.mp3');
 
 if (defaultTimeMin) {
     timerMinutes = parseInt(defaultTimeMin);
@@ -78,7 +81,7 @@ let allTimeNow = allTime;
 
 // On Click On Start Button
 startBtn.addEventListener("click", function() {
-    playCount();
+    playClick();
     if(timerStart){
         stopTimer();
     }else {
@@ -127,6 +130,7 @@ function countTime() {
     }else if(timerSeconds < 1) {
         timerMinutes -= 1;
         timerSeconds = 59;
+        playCountM();
     }else {
         playCount();
         timerSeconds -= 1;
@@ -166,7 +170,7 @@ function timerCompleted() {
         workStatus.textContent = "Work Time";
         updateTime(30);
     }
-    
+    playCompleted();
 }
 // Updating the time
 function updateTime(minutes) {
@@ -182,12 +186,13 @@ selectTimeEditBtn.onclick = () => {
     }else {
         selectTimeBox.classList.add("display-block");
     }
-    
+    playClick();
 };
 selectTimeExitButton.onclick = () => {
     if (selectTimeBox.classList.contains("display-block")) {
         selectTimeBox.classList.remove("display-block");
     };
+    playClick();
 };
 selectTimeSubmitButton.onclick = function() {
     if (selectTimeIn.value < 5 || selectTimeIn.textContent > 1200) {
@@ -204,6 +209,7 @@ selectTimeSubmitButton.onclick = function() {
         updateTime(selectTimeIn.value);
         selectTimeBox.classList.remove("display-block");
     }
+    playClick();
 }
 // Task List
 let taskForm = document.querySelector(".tasks .task-form")
@@ -358,4 +364,13 @@ modeBtn.onclick = function () {
 // Audio Functions
 function playCount() {
     coundDwonAudio.play();
-}
+};
+function playCountM() {
+    coundDwonMAudio.play();
+};
+function playClick() {
+    clickAudio.play();
+};
+function playCompleted() {
+    completedAudio.play();
+};
