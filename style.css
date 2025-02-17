@@ -400,7 +400,8 @@ header .toggle-menu .line {
 .home .control-buttons {
     padding: 25px;
 }
-.home .control-buttons .start-btn {
+.home .control-buttons .btn,
+.home .control-buttons .edit-box .submit {
     font-size: var(--fs-32);
     display: inline-block;
     background-color: var(--button-bg);
@@ -412,31 +413,6 @@ header .toggle-menu .line {
     margin-right: 20px;
     cursor: pointer;
     transition: .3s;
-}
-.home .control-buttons a {
-    font-size: var(--fs-32);
-    display: inline-block;
-    background-color: var(--button-bg);
-    background: linear-gradient(180deg, #6B8E23 0%, #556B2F 100%);
-    padding: 10px 20px;
-    border-radius: 8px;
-    color: var(--white);
-    text-align: center;
-    margin-right: 20px;
-    transition: .3s;
-}
-.home .control-buttons .edit-btn {
-    font-size: var(--fs-32);
-    display: inline-block;
-    background-color: var(--button-bg);
-    background: linear-gradient(180deg, #6B8E23 0%, #556B2F 100%);
-    padding: 10px 20px;
-    border-radius: 8px;
-    color: var(--white);
-    text-align: center;
-    cursor: pointer;
-    transition: .3s;
-    position: relative;
 }
 .home .control-buttons .edit-holder {
     position: relative;
@@ -465,7 +441,7 @@ header .toggle-menu .line {
     top: -15px;
     fill: var(--highlight);
 }
-.home .control-buttons .edit-box #minutes-number {
+#minutes-number {
     width: 121px;
     height: 50px;
     padding: 10px;
@@ -478,19 +454,13 @@ header .toggle-menu .line {
     box-sizing: border-box;
     transition: .3s;
 }
-.home .control-buttons .edit-box #minutes-number:focus {
+#minutes-number:focus {
     border: 1px solid var(--black);
 }
 .home .control-buttons .edit-box .submit {
-    background: linear-gradient(180deg, #6B8E23 0%, #556B2F 100%);
-    color: var(--button-text);
-    padding: 12px 20px;
-    border-radius: 8px;
+    font-size: var(--fs-14);
     font-weight: bold;
-    transition: 0.3s ease-in-out;
     border: none;
-    background-color: var(--button-bg);
-    cursor: pointer;
     box-shadow: 0px 1px 10px 3px #00000052;
 }
 .home .control-buttons > *:hover {
@@ -553,26 +523,22 @@ header .toggle-menu .line {
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     border-radius: 6px;
 }
-.home .tasks form #task-name {
-    width: 70%;
+.home .tasks form #task-name,
+.home .tasks form #task-duration {
     background-color: var(--input-bg);
     color: var(--input-text);
     padding: 10px;
-    border: none;
     border: 1px solid var(--input-border);
+    outline: none;
+}
+.home .tasks form #task-name {
+    width: 70%;
     border-right: none;
     border-radius: 6px 0 0 6px;
-    outline: none;
 }
 .home .tasks form #task-duration {
     width: 30%;
-    background-color: var(--input-bg);
-    color: var(--input-text);
-    padding: 10px;
-    border: none;
-    border: 1px solid var(--input-border);
     border-radius: 0 6px 6px 0;
-    outline: none;
 }
 .home .tasks form .add-btn {
     background-color: var(--input-bg);
@@ -601,15 +567,9 @@ header .toggle-menu .line {
     text-overflow: ellipsis;
     overflow: hidden;
 }
-#clear-task-btn {
-    font-size: var(--fs-18);
-    padding: 10px;
-    color: var(--secondary-text);
-    border: 1px solid var(--primary-text);
-    border-left: none;
-    cursor: pointer;
-}
-#start-task-btn {
+#clear-task-btn,
+#start-task-btn,
+.home .tasks .clear-all {
     font-size: var(--fs-18);
     padding: 10px;
     color: var(--secondary-text);
@@ -618,12 +578,7 @@ header .toggle-menu .line {
     cursor: pointer;
 }
 .home .tasks .clear-all {
-    font-size: var(--fs-18);
-    padding: 10px;
-    color: var(--secondary-text);
     border: 1px solid var(--primary-text);
-    cursor: pointer;
-    display: block;
     width: fit-content;
     margin: 0 auto;
 }
