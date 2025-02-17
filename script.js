@@ -54,7 +54,7 @@ let selectTimeEditBtn = document.querySelector(".home .control-buttons .edit-btn
 let selectTimeBox = document.querySelector(".home .control-buttons .edit-box");
 let selectTimeIn = document.querySelector("#minutes-number");
 let selectTimeSubmitButton = document.querySelector(".home .control-buttons .edit-box .submit");
-let selectTimeExitButton = document.querySelector(".home .control-buttons .edit-btn form svg");
+let selectTimeExitButton = document.querySelector(".home .control-buttons .edit-box form .exit");
 
 
 let timerMinutes = 1;
@@ -157,8 +157,21 @@ function updateTime(minutes) {
     timerText.textContent = `${timerMinutes}:00`;
 }
 // Editing The Time
-selectTimeEditBtn.onclick = () => selectTimeBox.style.cssText = "display:block;top: -112px;right: -164px; ";
-selectTimeExitButton.onclick = () => selectTimeBox.style.cssText = "display:none;top: -112px;right: -164px;";
+selectTimeEditBtn.onclick = () => {
+    if(selectTimeBox.classList.contains("display-block")) {
+        selectTimeBox.classList.remove("display-block");
+    }else {
+        selectTimeBox.classList.add("display-block");
+        console.log("added");
+    }
+    
+};
+selectTimeExitButton.onclick = () => {
+    if (selectTimeBox.classList.contains("display-block")) {
+        selectTimeBox.classList.remove("display-block");
+        console.log("removed");
+    };
+};
 selectTimeSubmitButton.onclick = function() {
     if (selectTimeIn.value < 5 || selectTimeIn.textContent > 1200) {
         let textWarning = document.createElement('div');
@@ -172,6 +185,106 @@ selectTimeSubmitButton.onclick = function() {
             stopTimer();
         }
         updateTime(selectTimeIn.value);
-        selectTimeBox.style.display = "none";
+        selectTimeBox.classList.remove("display-block");
     }
 }
+// Task List
+let taskForm = document.querySelector(".tasks .task-form")
+let taskNameIn = document.querySelector("#task-name");
+let taskDurationIn = document.querySelector("#task-duration");
+let submitTaskButton = document.querySelector("#submit-task");
+let taskListHolder = document.querySelector(".tasks .tasks-list");
+
+let tasksArray = [];
+let localStorageValue = localStorage.getItem("taskList");
+
+
+if(localStorageValue) {
+    tasksArray = JSON.parse(localStorage.getItem("taskList"));
+}
+
+
+// Getting the tasks from the local storage
+for(i in tasksArray) {
+    let taskDiv = document.createElement("div");
+    let taskNameDiv = document.createElement("div");
+    let clearTaskBtn = document.createElement("div");
+    let startTaskBtn = document.createElement("div");
+    let duration = tasksArray[i].taskDuration;
+    taskNameDiv.textContent = tasksArray[i].taskName;
+
+    clearTaskBtn.textContent = "Clear";
+    startTaskBtn.textContent = "Start";
+
+
+    taskDiv.id = "task-div";;
+    taskNameDiv.id = "task-name-div";
+    clearTaskBtn.id = "clear-task-btn";
+    startTaskBtn.id = "start-task-btn";
+
+    taskDiv.append(taskNameDiv, clearTaskBtn, startTaskBtn);
+    taskListHolder.append(taskDiv);
+
+    // When The user click on the clear or start button
+    startTaskBtn.addEventListener("click", function (event) {
+        if (event.currentTarget.id === "start-task-btn") {
+            updateTime(duration);
+        };
+    });
+    clearTaskBtn.addEventListener("click", function (event) {
+        for(i in tasksArray){
+            if(tasksArray[i].taskName = taskNameDiv.textContent) {
+                tasksArray.pop(i);
+                localStorage.setItem("taskList",JSON.stringify(tasksArray));
+            };
+        }
+    });
+}
+
+submitTaskButton.addEventListener("click", function() {
+    if (taskNameIn.value.length > 45 || taskNameIn.value.length < 2 || taskDurationIn.value < 5 || taskDurationIn > 1200) {
+        if (taskDurationIn.value < 5 || taskDurationIn > 1200) {
+            let textWarning = document.createElement('div');
+            textWarning.textContent = "the task duration should be between 5 - 1600 minutes"
+            textWarning.style.cssText = "text-align:center;color: red; font-size: 14; wrap-content: wrap; margin-top: 10px;";
+            taskDurationIn.style.color = "red";
+            taskForm.append(textWarning);
+        }
+        if (taskNameIn.value.length > 45 || taskNameIn.value.length < 2) {
+            let textWarning = document.createElement('div');
+            textWarning.textContent = "the task name should be between 2 - 45 character"
+            textWarning.style.cssText = "text-align:center; color: red; font-size: 14; wrap-content: wrap; margin-top: 10px;";
+            taskNameIn.style.color = "red";
+            taskForm.append(textWarning);
+        }
+    }else {
+        // Adding the tasks to the local storage
+        tasksArray.push({
+            taskName: taskNameIn.value,
+            taskDuration: taskDurationIn.value
+        });
+        localStorage.setItem("taskList",JSON.stringify(tasksArray));
+        // adding the task elements to the task list
+        let taskDiv = document.createElement("div");
+        let taskNameDiv = document.createElement("div");
+        let clearTaskBtn = document.createElement("div");
+        let startTaskBtn = document.createElement("div");
+
+        taskNameDiv.textContent = tasksArray[tasksArray.length-1].taskName;
+        clearTaskBtn.textContent = "Clear";
+        startTaskBtn.textContent = "Start";
+
+
+        taskDiv.id ="task-div";;
+        taskNameDiv.id = "task-name-div";
+        clearTaskBtn.id = "clear-task-btn";
+        startTaskBtn.id = "start-task-btn";
+
+        taskDiv.append(taskNameDiv,clearTaskBtn,startTaskBtn);
+        taskListHolder.append(taskDiv);
+
+        // Clear Task Inputs 
+        taskNameIn.value = "";
+        taskDurationIn.value = "";
+    }
+});

@@ -315,6 +315,7 @@ header .toggle-menu .line {
     justify-content: center;
     background-color: var(--primary-bg);
     border-radius: 50%;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 .home .circle .status {
     position: absolute;
@@ -324,6 +325,7 @@ header .toggle-menu .line {
     color: var(--timer-text);
     font-weight: bold;
     opacity: .8;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 .home .control-buttons {
     padding: 25px;
@@ -334,7 +336,7 @@ header .toggle-menu .line {
     background-color: var(--button-bg);
     background: linear-gradient(180deg, #6B8E23 0%, #556B2F 100%);
     padding: 10px 20px;
-    border-radius: 17px;
+    border-radius: 8px;
     color: var(--white);
     text-align: center;
     margin-right: 20px;
@@ -347,7 +349,7 @@ header .toggle-menu .line {
     background-color: var(--button-bg);
     background: linear-gradient(180deg, #6B8E23 0%, #556B2F 100%);
     padding: 10px 20px;
-    border-radius: 17px;
+    border-radius: 8px;
     color: var(--white);
     text-align: center;
     margin-right: 20px;
@@ -359,34 +361,37 @@ header .toggle-menu .line {
     background-color: var(--button-bg);
     background: linear-gradient(180deg, #6B8E23 0%, #556B2F 100%);
     padding: 10px 20px;
-    border-radius: 17px;
+    border-radius: 8px;
     color: var(--white);
     text-align: center;
     cursor: pointer;
     transition: .3s;
     position: relative;
 }
-.home .control-buttons .edit-btn .edit-box {
+.home .control-buttons .edit-holder {
+    position: relative;
+}
+.home .control-buttons .edit-box {
     position: absolute;
     padding: 20px;
-    top: -20px;
-    right: -50px;
     background-color: var(--section-bg);
     border-radius: 10px;
     box-shadow: 0px 1px 10px 3px #00000052;
     transition: .3s;
-    display: none;
+    top: -132px;
+    right: -188px;
 }
-.home .control-buttons .edit-btn form {
+.home .control-buttons .edit-box form {
     display: flex;
     gap: 20px;
     position: relative;
 }
-.home .control-buttons .edit-btn form .exit {
+.home .control-buttons .edit-box form .exit {
     width: 20px;
     height: 20px;
     position: absolute;
-    right: -17px;
+    cursor: pointer;
+    right: -18px;
     top: -15px;
     fill: var(--highlight);
 }
@@ -421,6 +426,12 @@ header .toggle-menu .line {
 .home .control-buttons > *:hover {
     background-color: var(--button-hover);
     scale: 1.05;
+}
+.display-none {
+    display: none;
+}
+.display-block {
+    display: block;
 }
 /* End Home Section */
 /* Start Tasks Section */
@@ -486,12 +497,12 @@ header .toggle-menu .line {
     cursor: pointer;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
-.home .tasks .tasks-list .task {
+#task-div {
     margin: 20px auto 0 auto;
     width: fit-content;
     display: flex;
 }
-.home .tasks .tasks-list .task-name {
+#task-name-div {
     font-size: var(--fs-18);
     font-weight: bold;
     width: 250px;
@@ -499,7 +510,7 @@ header .toggle-menu .line {
     border: 1px solid var(--primary-text);
     padding: 10px;
 }
-.home .tasks .tasks-list .clear-task {
+#clear-task-btn {
     font-size: var(--fs-18);
     padding: 10px;
     color: var(--secondary-text);
@@ -507,7 +518,7 @@ header .toggle-menu .line {
     border-left: none;
     cursor: pointer;
 }
-.home .tasks .tasks-list .start-task {
+#start-task-btn {
     font-size: var(--fs-18);
     padding: 10px;
     color: var(--secondary-text);
