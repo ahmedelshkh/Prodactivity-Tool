@@ -207,17 +207,11 @@ let taskNameIn = document.querySelector("#task-name");
 let taskDurationIn = document.querySelector("#task-duration");
 let submitTaskButton = document.querySelector("#submit-task");
 let taskListHolder = document.querySelector(".tasks .tasks-list");
+let clearAllBtn = document.querySelector(".home .tasks .clear-all");
 
 let tasksArray = [];
 let localStorageValue = localStorage.getItem("taskList");
 
-
-
-let clearTaskBtn = document.createElement("div");
-let startTaskBtn = document.createElement("div");
-
-clearTaskBtn.id = "clear-task-btn";
-startTaskBtn.id = "start-task-btn";
 
 getTasksFromLocal();
 // Getting the tasks from the local storage
@@ -316,4 +310,15 @@ function updateLSV(timeM,TimeS = 0) {
         localStorage.setItem("timeS", TimeS);
     }
     localStorage.setItem("taskList", JSON.stringify(tasksArray));
+}
+
+// When Click On Clear All Button
+clearAllBtn.onclick = function() {
+    removeTaskListChilds();
+    clearLocalStorage();
+};
+
+function clearLocalStorage() {
+    localStorage.clear();
+    tasksArray = [];
 }

@@ -323,9 +323,8 @@ header .toggle-menu .line {
     top: 67%;
     z-index: 1000;
     font-size: var(--fs-18);
-    color: var(--timer-text);
+    color: var(--primary-text);
     font-weight: bold;
-    opacity: .8;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 .home .control-buttons {
@@ -450,6 +449,9 @@ header .toggle-menu .line {
 }
 /* End Home Section */
 /* Start Tasks Section */
+.home .tasks {
+    padding-bottom: 20px;
+}
 .home .tasks .line {
     width: 100%;
     height: 1px;
@@ -503,12 +505,12 @@ header .toggle-menu .line {
     outline: none;
 }
 .home .tasks form .add-btn {
-    background-color: var(--primary-bg);
+    background-color: var(--input-bg);
     font-size: var(--fs-18);
     padding: 10px 20px;
     border: 1px solid var(--input-border);
     border-radius: 10px;
-    color: var(--input-border);
+    color: var(--timer-text);
     cursor: pointer;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
@@ -545,6 +547,16 @@ header .toggle-menu .line {
     border-left: none;
     cursor: pointer;
 }
+.home .tasks .clear-all {
+    font-size: var(--fs-18);
+    padding: 10px;
+    color: var(--secondary-text);
+    border: 1px solid var(--primary-text);
+    cursor: pointer;
+    display: block;
+    width: fit-content;
+    margin: 0 auto;
+}
 @media(max-width: 768px) {
     .home .tasks form {
         flex-direction: column;
@@ -553,3 +565,18 @@ header .toggle-menu .line {
 /* End Home Section */
 
 
+/* Start Footer */
+footer {
+    background-color: var(--black);
+}
+footer .container p {
+    text-align: center;
+    color: var(--white);
+    padding: 15px;
+    margin: 0;
+}
+footer .container p a {
+    color: var(--highlight-text);
+    text-decoration: underline;
+    font-weight: bold;
+}
