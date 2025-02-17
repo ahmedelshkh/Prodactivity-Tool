@@ -322,3 +322,31 @@ function clearLocalStorage() {
     localStorage.clear();
     tasksArray = [];
 }
+
+// Dark Mode
+let darkMode = localStorage.getItem("darkMode");
+let modeBtn = document.querySelector("header .links .dark-mode-div");
+let sunBtn = document.querySelector("header .dark-mode-div .sun");
+let moonBtn = document.querySelector("header .dark-mode-div .moon");
+
+if (darkMode) {
+    document.body.classList.add("dark-mode");
+    sunBtn.style.display = "none";
+    moonBtn.style.display = "block"
+};
+
+modeBtn.onclick = function () {
+    if (darkMode) {
+        document.body.classList.remove("dark-mode");
+        localStorage.removeItem("darkMode");
+        moonBtn.style.display = "none";
+        sunBtn.style.display = "block";
+    } else {
+        document.body.classList.add("dark-mode");
+        localStorage.setItem("darkMode", true);
+        sunBtn.style.display = "none";
+        moonBtn.style.display = "block";
+    };
+    darkMode = localStorage.getItem("darkMode");
+
+};

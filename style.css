@@ -60,6 +60,68 @@
         --fs-100: 7em;
         --fs-144: 9em;
 }
+.dark-mode {
+    /* 🌑 Background Colors */
+    --primary-bg: #1E1E1E; /* Deep Charcoal - Dark mode main background */
+    --header-bg: #2B3A47;  /* Muted Navy - Darker tone for contrast */
+    --section-bg: #252A32; /* Slightly lighter than primary for sections */
+
+    /* 🎯 Text Colors */
+    --primary-text: #E5C7A9; /* Soft Beige - Classic readability */
+    --secondary-text: #C8B6A6; /* Warm Grayish Beige - Softer contrast */
+    --highlight-text: #F4C95D; /* Golden Mustard - Stands out for highlights */
+
+    /* 🔘 Timer Colors */
+    --timer-border: #8B6F5A; /* Warm Walnut - Fits the dark mode feel */
+    --timer-text: #D7B899; /* Soft Tan - Makes text easy to read */
+    --timer-progress: #E07A5F; /* Warm Rust Red - Timer progress color */
+
+    /* ✅ Buttons & Interactive Elements */
+    --button-bg: #556B2F; /* Deep Olive Green - Buttons stand out */
+    --button-text: #F5F5F5; /* Off-White - Good contrast */
+    --button-hover: #6E8B3D; /* Lighter Olive - Hover effect */
+
+    /* 📌 Input Fields */
+    --input-bg: #2F3A47; /* Dark Navy - Clean and easy on eyes */
+    --input-border: #8B6F5A; /* Soft Walnut - Matches warm theme */
+    --input-text: #E5C7A9; /* Soft Beige - Matches main text */
+
+    /* 🚨 Warning & Alerts */
+    --error-text: #E07A5F; /* Rust Red - Alerts and errors */
+
+    /* 🎨 Neutral Colors */
+    --white: #EAEAEA; /* Light Gray - Better than pure white */
+    --black: #111111; /* Near Black - Softer for dark mode */
+}
+.break-time {
+     --primary-bg: #E3F2FD; /* Soft Sky Blue - Relaxing background */
+    --header-bg: #1E88E5;  /* Medium Blue - Stands out for contrast */
+    --section-bg: #BBDEFB; /* Light Blue - Subtle section distinction */
+
+    /* 🎯 Text Colors */
+    --primary-text: #1A3D5F; /* Deep Blue - Clear readability */
+    --secondary-text: #1565C0; /* Rich Blue - Used for headers & links */
+    --highlight-text: #FDD835; /* Golden Yellow - Eye-catching highlights */
+
+    /* 🔘 Timer Colors */
+    --timer-border: #64B5F6; /* Calm Blue - Timer ring */
+    --timer-text: #1976D2; /* Deeper Blue - Makes the countdown clear */
+    --timer-progress: #FFB74D; /* Warm Orange - Progress indicator */
+
+    /* ✅ Buttons & Interactive Elements */
+    --button-bg: #43A047; /* Fresh Green - Encourages relaxation */
+    --button-text: #FFFFFF; /* White - High contrast */
+    --button-hover: #388E3C; /* Deeper Green - Hover effect */
+
+    /* 📌 Input Fields */
+    --input-bg: #E3F2FD; /* Light Sky Blue - Keeps it fresh */
+    --input-border: #64B5F6; /* Bright Blue - Matches the theme */
+    --input-text: #1A3D5F; /* Deep Blue - Consistent readability */
+
+    /* 🎨 Neutral Colors */
+    --white: #FFFFFF;
+    --black: #222222;
+}
 /* lora-regular - latin */
 @font-face {
     font-display: swap;
@@ -189,16 +251,24 @@ header .menu li a {
 header .menu li a:hover {
     color: var(--highlight-text);
 }
-header .links .dark-mode svg {
+header .links .dark-mode-div svg {
     width: 35px;
     height: 35px;
     transition: .3s;
-    fill: var(--highlight-text);
     border-radius: 50%;
     cursor: pointer;
 }
-header .links .dark-mode .moon {
+header .links .dark-mode-div .moon {
     display: none;
+    width: 30px;
+    height: 30px;
+    fill: var(--highlight-text);
+}
+header .links .dark-mode-div .sun {
+    fill: var(--highlight-text);
+}
+header .links .dark-mode-div svg:hover {
+    transform: rotate(-30deg) scale(.8);
 }
 .menu-clicked {
     display: flex !important;
