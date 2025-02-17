@@ -62,6 +62,7 @@ let timerMinutes = 30;
 let timerSeconds = 0;
 let timerStart = false;
 let breakTime = true;
+let coundDwonAudio = new Audio('/audio/countDwon.m4a');
 
 if (defaultTimeMin) {
     timerMinutes = parseInt(defaultTimeMin);
@@ -77,6 +78,7 @@ let allTimeNow = allTime;
 
 // On Click On Start Button
 startBtn.addEventListener("click", function() {
+    playCount();
     if(timerStart){
         stopTimer();
     }else {
@@ -122,11 +124,11 @@ function countTime() {
             timerCompleted();
             breakTime = true;
         }
-    }
-    if(timerSeconds < 1) {
+    }else if(timerSeconds < 1) {
         timerMinutes -= 1;
         timerSeconds = 59;
     }else {
+        playCount();
         timerSeconds -= 1;
     };
     prograssPrecentege();
@@ -151,6 +153,7 @@ function timerCompleted() {
     timerStart = false;
     updateLSV(30);
     if(breakTime) {
+        document.body.classList.add("break-time");
         workStatus.textContent = "Break Time";
         if(allTime / 60 >= 50) {
             updateTime(10);
@@ -159,6 +162,7 @@ function timerCompleted() {
         }
         
     }else {
+        document.body.classList.remove("break-time");
         workStatus.textContent = "Work Time";
         updateTime(30);
     }
@@ -350,3 +354,8 @@ modeBtn.onclick = function () {
     darkMode = localStorage.getItem("darkMode");
 
 };
+
+// Audio Functions
+function playCount() {
+    coundDwonAudio.play();
+}
