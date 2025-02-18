@@ -329,7 +329,8 @@ header .toggle-menu .line {
 .home {
     background-color: var(--primary-bg);
 }
-.home > .container {
+.home > .container,
+.main .container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -401,7 +402,7 @@ header .toggle-menu .line {
     padding: 25px;
 }
 .home .control-buttons .btn,
-.home .control-buttons .edit-box .submit,
+.control-buttons .edit-box .submit,
 .main .control-buttons .btn {
     font-size: var(--fs-32);
     display: inline-block;
@@ -415,10 +416,10 @@ header .toggle-menu .line {
     cursor: pointer;
     transition: .3s;
 }
-.home .control-buttons .edit-holder {
+.control-buttons .edit-holder {
     position: relative;
 }
-.home .control-buttons .edit-box {
+.control-buttons .edit-box {
     position: absolute;
     padding: 20px;
     background-color: var(--section-bg);
@@ -428,12 +429,12 @@ header .toggle-menu .line {
     top: -132px;
     right: -188px;
 }
-.home .control-buttons .edit-box form {
+.control-buttons .edit-box form {
     display: flex;
     gap: 20px;
     position: relative;
 }
-.home .control-buttons .edit-box form .exit {
+.control-buttons .edit-box form .exit {
     width: 20px;
     height: 20px;
     position: absolute;
@@ -458,7 +459,7 @@ header .toggle-menu .line {
 #minutes-number:focus {
     border: 1px solid var(--black);
 }
-.home .control-buttons .edit-box .submit {
+.control-buttons .edit-box .submit {
     font-size: var(--fs-14);
     font-weight: bold;
     border: none;
@@ -606,3 +607,29 @@ footer .container p a {
     text-decoration: underline;
     font-weight: bold;
 }
+
+/* Start Full Focus Page */
+.main {
+    background-color: var(--black);
+}
+.main .time-holder {
+    position: relative;
+}
+.main .time-holder svg {
+    position: absolute;
+    fill: white;
+    width: 35px;
+    height: auto;
+    top: -10px;
+    right: -10px;
+    cursor: pointer;
+    transition: .3s;
+}
+.main .time-holder svg:hover {
+    transform: scale(1.2);
+}
+.main .time-holder .time-text {
+    color: var(--white);
+    font-size: 30vw;
+}
+/* End Full Focus Page */

@@ -6,7 +6,8 @@ let toggleLines = document.querySelectorAll("header .toggle-menu .line");
 
 let click = true;
 
-toggleMenu.onclick = function (e) {
+toggleMenu.addEventListener("click", toggleMenuclick); 
+function toggleMenuclick() {
     if (click) {
         click = false;
         for (let i = 0; i < toggleLines.length; i++) {
@@ -29,7 +30,8 @@ toggleMenu.onclick = function (e) {
 };
 
 // Hide the Menu On Click
-menu.onclick = function () {
+menu.addEventListener("click", HideTheMenu);
+function HideTheMenu () {
     setTimeout(() => {
         menu.classList.remove("menu-clicked");
     }, 200);
@@ -105,6 +107,7 @@ function startTimer(stop) {
     
 };
 
+
 function updateTimerText() {
     if (timerMinutes < 10 && timerSeconds < 10) {
         timerText.textContent = `0${timerMinutes}:0${timerSeconds}`;
@@ -177,7 +180,7 @@ function updateTime(minutes) {
     timerMinutes = minutes;
     allTime = timerMinutes * 60 + timerSeconds;
     allTimeNow = allTime;
-    timerText.textContent = `${timerMinutes}:00`;
+    updateTimerText();
 }
 // Editing The Time
 selectTimeEditBtn.onclick = () => {
