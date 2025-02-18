@@ -62,9 +62,9 @@ let timerMinutes = 30;
 let timerSeconds = 0;
 let timerStart = false;
 let breakTime = true;
-let coundDwonAudio = new Audio('/audio/countDown.m4a');
-let coundDwonMAudio = new Audio('/audio/countDownM.m4a');
-let clickAudio = new Audio('/audio/click.m4a');
+let coundDwonAudio = new Audio('/audio/countDown.mp3');
+let coundDwonMAudio = new Audio('/audio/countDownM.mp3');
+let clickAudio = new Audio('/audio/click.mp3');
 let completedAudio = new Audio('/audio/completed.mp3');
 
 if (defaultTimeMin) {
