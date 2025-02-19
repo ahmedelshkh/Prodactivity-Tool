@@ -482,11 +482,14 @@ header .toggle-menu .line {
     .home .circle .time {
         font-size: var(--fs-100)
     }
-    .home .control-buttons {
+    .control-buttons {
         display: flex;
         align-items: center;
         gap: 20px;
         flex-direction: column;
+    }
+    .control-buttons .btn {
+        font-size: var(--fs-14);
     }
 }
 /* End Home Section */
