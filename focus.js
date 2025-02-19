@@ -45,7 +45,7 @@ function HideTheMenu() {
 }
 
 // Start Timer Functionality
-
+let fullBtn = document.querySelector(".main .time-holder .full-btn")
 let timerText = document.querySelector(".main .time-holder .time-text");
 let startBtn = document.querySelector(".main .control-buttons .start-btn");
 let editBtn = document.querySelector(".min .control-buttons .edit-btn");
@@ -54,6 +54,9 @@ let selectTimeBox = document.querySelector(".main .control-buttons .edit-box");
 let selectTimeIn = document.querySelector("#minutes-number");
 let selectTimeSubmitButton = document.querySelector(".main .control-buttons .edit-box .submit");
 let selectTimeExitButton = document.querySelector(".main .control-buttons .edit-box form .exit");
+let headerSection = document.querySelector("header");
+let footerSection = document.querySelector("footer");
+let controlBtnSection = document.querySelector(".control-buttons");
 
 let defaultTimeMin = localStorage.getItem("timeM");
 let defaultTimeSec = localStorage.getItem("timeS");
@@ -76,6 +79,8 @@ startBtn.addEventListener("click", function () {
     if (timerStart) {
         stopTimer();
     } else {
+        hideAll();
+        document.documentElement.requestFullscreen();
         startTimer();
         startBtn.textContent = "Stop";
         timerStart = true;
@@ -125,6 +130,22 @@ function countTime() {
     } else {
         playCount();
         timerSeconds -= 1;
+    };
+    let timeout;
+    document.addEventListener("mousemove", showMouse);
+    function showMouse(){
+        document.body.style.cursor = "default";
+        controlBtnSection.style.display = "flex";
+        fullBtn.style.display = "block";
+
+        clearTimeout(timeout);
+        timeout = setInterval(hideMouse, 2000);
+    };
+
+    function hideMouse() {
+        document.body.style.cursor = "none";
+        controlBtnSection.style.display = "none";
+        fullBtn.style.display = "none";
     };
 };
 // Stop The Timer
@@ -205,3 +226,36 @@ function playClick() {
 function playCompleted() {
     completedAudio.play();
 };
+
+// Full Screen
+function FullScreen() {
+    if (document.fullscreenElement) {
+        document.exitFullscreen();
+        displayElements();
+    } else {
+        document.documentElement.requestFullscreen();
+        hideElements();
+    }
+}
+
+fullBtn.addEventListener("click", FullScreen);
+
+function hideElements() {
+    headerSection.style.display = "none";
+}
+
+function displayElements() {
+    headerSection.style.display = "flex";
+}
+function hideAll(){
+    headerSection.style.display = "none";
+    document.body.style.cursor = "none";
+    controlBtnSection.style.display = "none";
+    fullBtn.style.display = "none";
+}
+function showAll(){
+    headerSection.style.display = "flex";
+    document.body.style.cursor = "default";
+    controlBtnSection.style.display = "flex";
+    fullBtn.style.display = "block";
+}
