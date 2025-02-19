@@ -529,7 +529,7 @@ header .toggle-menu .line {
         max-width: 100%;
     }
     .home .circle .time {
-        font-size: var(--fs-100)
+        font-size: 20vw;
     }
     .control-buttons {
         display: flex;
