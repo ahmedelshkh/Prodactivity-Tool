@@ -528,17 +528,19 @@ header .toggle-menu .line {
     .home svg {
         max-width: 100%;
     }
-    .home .circle .time {
-        font-size: 20vw;
-    }
     .control-buttons {
         display: flex;
         align-items: center;
         gap: 20px;
         flex-direction: column;
     }
+}
+@media(max-width: 450px) {
+    .home .circle .time {
+        font-size: 25vw;
+    }
     .control-buttons .btn {
-        font-size: var(--fs-14);
+        font-size: var(--fs-14) !important;
     }
 }
 /* End Home Section */
