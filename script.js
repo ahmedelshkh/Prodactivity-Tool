@@ -194,7 +194,6 @@ function timerCompleted() {
         }else {
             updateTime(5);
         }
-        
     }else {
         document.body.classList.remove("break-time");
         workStatus.textContent = "Work Time";
@@ -206,7 +205,13 @@ function timerCompleted() {
 function updateTime(minutes) {
     timerMinutes = minutes;
     allTime = timerMinutes * 60 + timerSeconds;
-    allTimeNow = allTime;
+    // if timer value is bigger than 99
+    if (allTime / 60 >= 99) {
+        timerText.style.transform = "translate(-50%, -50%) scale(.8)";
+        if (allTime / 60 >= 999) {
+            timerText.style.transform = "translate(-50%, -50%) scale(.7)";
+        }
+    }
     updateTimerText();
 }
 // Editing The Time
