@@ -83,6 +83,7 @@ let selectTimeExitButton = document.querySelector(".main .control-buttons .edit-
 let headerSection = document.querySelector("header");
 let footerSection = document.querySelector("footer");
 let controlBtnSection = document.querySelector(".control-buttons");
+let timeContainer = document.querySelector(".main .container")
 
 let defaultTimeMin = localStorage.getItem("timeM");
 let defaultTimeSec = localStorage.getItem("timeS");
@@ -91,6 +92,7 @@ let timerMinutes = 30;
 let timerSeconds = 0;
 let timerStart = false;
 let breakTime = true;
+let timeout;
 let coundDwonAudio = new Audio('audio/countDown.mp3');
 let coundDwonMAudio = new Audio('audio/countDownM.mp3');
 let clickAudio = new Audio('audio/click.mp3');
@@ -105,7 +107,7 @@ startBtn.addEventListener("click", function () {
     if (timerStart) {
         stopTimer();
     } else {
-        hideAll();
+        hideMouse();
         document.documentElement.requestFullscreen();
         startTimer();
         startBtn.textContent = "Stop";
@@ -157,28 +159,15 @@ function countTime() {
         playCount();
         timerSeconds -= 1;
     };
-    let timeout;
+    // When The mouse moves
     document.addEventListener("mousemove", showMouse);
-    function showMouse(){
-        document.body.style.cursor = "default";
-        controlBtnSection.style.display = "flex";
-        fullBtn.style.display = "block";
-
-        clearTimeout(timeout);
-        timeout = setInterval(hideMouse, 2000);
-    };
-
-    function hideMouse() {
-        document.body.style.cursor = "none";
-        controlBtnSection.style.display = "none";
-        fullBtn.style.display = "none";
-    };
 };
 // Stop The Timer
 function stopTimer() {
     startBtn.textContent = "Start";
     timerStart = false;
     startTimer(true);
+    clearTimeout(timeout);
 };
 // When The Time is Completed
 function timerCompleted() {
@@ -193,8 +182,6 @@ function timerCompleted() {
         }
 
     } else {
-        document.body.classList.remove("break-time");
-        workStatus.textContent = "Work Time";
         updateTime(30);
     }
     playCompleted();
@@ -270,6 +257,7 @@ function FullScreen() {
         if (window.innerWidth < 992) {
             if (screen.orientation && screen.orientation.lock) {
                 screen.orientation.lock("portrait");
+                controlBtnSection.style.flexDirection = "column";
             };
         }
     } else {
@@ -279,6 +267,7 @@ function FullScreen() {
         if (window.innerWidth < 992) {
             if (screen.orientation && screen.orientation.lock) {
                 screen.orientation.lock("landscape");
+                controlBtnSection.style.flexDirection = "row";
             };
     };
 }
@@ -297,10 +286,33 @@ function hideAll(){
     document.body.style.cursor = "none";
     controlBtnSection.style.display = "none";
     fullBtn.style.display = "none";
+    footerSection.style.display = "none";
 }
 function showAll(){
     headerSection.style.display = "flex";
     document.body.style.cursor = "default";
     controlBtnSection.style.display = "flex";
     fullBtn.style.display = "block";
+    footerSection.style.display = "block";
+}
+
+// On Mouse move Functions
+function showMouse() {
+    timeContainer.style.height = "auto";
+    showElementFullScreen();
+    clearTimeout(timeout);
+    timeout = setInterval(hideMouse, 2000);
+};
+
+function hideMouse() {
+    document.body.style.cursor = "none";
+    hideAll();
+    timeContainer.style.height = "100vh";
+};
+
+function showElementFullScreen(){
+    document.body.style.cursor = "default";
+    controlBtnSection.style.display = "flex";
+    fullBtn.style.display = "block";
+    footerSection.style.display = "block";
 }
