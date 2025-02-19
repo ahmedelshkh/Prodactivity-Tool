@@ -26,8 +26,16 @@
                         <a href="full-screen-focus-time.html">full focus</a>
                     </li>
                     <li>
-                        <a href="#">settings</a>
+                        <a id="settings" href="#settings">settings</a>
                     </li>
+                    <div id="settingsPopup" class="popup">
+                        <p>Enable Audio</p>
+                        <label for="audioToggle">
+                            <input type="checkbox" id="audioToggle">
+                            <div class="audio-check"></div>
+                        </label>
+                        <div id="closePopup">Close</div>
+                    </div>
                 </ul>
                 <div class="dark-mode-div">
                     <svg class="svg sun" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50"

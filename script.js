@@ -44,6 +44,33 @@ function HideTheMenu () {
     click = true;
 }
 
+// Change Settings
+let audioStatus = localStorage.getItem("audioOff");
+const settingsBtn = document.getElementById("settings");
+const settingsPopup = document.getElementById("settingsPopup");
+const closePopupBtn = document.getElementById("closePopup");
+const audioToggle = document.getElementById("audioToggle");
+
+if (!audioStatus) {
+    audioToggle.checked = true;
+};
+settingsBtn.onclick = function () {
+    settingsPopup.style.display = "block";
+}
+audioToggle.onchange = function () {
+    if (this.checked == true) {
+        localStorage.removeItem("audioOff");
+        audioStatus = false;
+    } else {
+        localStorage.setItem("audioOff", true);
+        audioStatus = localStorage.getItem("audioOff");
+    };
+
+};
+closePopupBtn.addEventListener("click", () => {
+    settingsPopup.style.display = "none";
+});
+
 // Start Timer Functionality
 
 let timerText = document.querySelector(".home .circle .time");
@@ -366,14 +393,24 @@ modeBtn.onclick = function () {
 
 // Audio Functions
 function playCount() {
-    coundDwonAudio.play();
+    if (!audioStatus) {
+        coundDwonAudio.play();
+    }
 };
 function playCountM() {
-    coundDwonMAudio.play();
+    if (!audioStatus) {
+        coundDwonMAudio.play();
+    }
 };
 function playClick() {
-    clickAudio.play();
+    if (!audioStatus) {
+        clickAudio.play();
+    }
+
 };
 function playCompleted() {
-    completedAudio.play();
+    if (!audioStatus) {
+        completedAudio.play();
+    }
+
 };
