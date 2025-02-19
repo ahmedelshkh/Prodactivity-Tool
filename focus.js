@@ -231,13 +231,24 @@ function playCompleted() {
 function FullScreen() {
     if (document.fullscreenElement) {
         document.exitFullscreen();
-        displayElements();
+        showAll();
+        // Change Screen Orientation
+        if (window.innerWidth < 992) {
+            if (screen.orientation && screen.orientation.lock) {
+                screen.orientation.lock("portrait");
+            };
+        }
     } else {
         document.documentElement.requestFullscreen();
         hideElements();
-    }
+        // Change Screen Orientation
+        if (window.innerWidth < 992) {
+            if (screen.orientation && screen.orientation.lock) {
+                screen.orientation.lock("landscape");
+            };
+    };
 }
-
+};
 fullBtn.addEventListener("click", FullScreen);
 
 function hideElements() {
