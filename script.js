@@ -414,8 +414,6 @@ function playClick() {
 
 };
 function playCompleted() {
-    if (!audioStatus) {
-        completedAudio.play();
-    }
+    completedAudio.play();
 
 };
